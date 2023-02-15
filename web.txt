@@ -1,0 +1,1143 @@
+1.标签由标签名、标签属性和文本内容三部分组成（注意：单标签没有文本内容）。
+2.标签属性是对标签的一种描述方式。
+3.标签属性分通用属性、自有属性和自定义属性。
+4.通用属性:所有标签都具有的属性（除<br />标签外）。
+    通用属性有：
+        id：用来给标签取一个唯一的名称。id名称在一个网页必须是唯一的。
+        class：用来给标签取一个类名。
+        style：用来设置该标签的行内样式。
+        title：当鼠标移到该标签，所显示的提示内容。
+5.自定义标签属性：通常用来传值或用于图片懒加载等方面。
+    格式：data-*
+    <img data-src="图片名" alt="提示文本"/>
+    <p data-id="goodsid">...</p>
+6.table主要用于呈现格式化数据。表格是由行和列组成。
+    格式：
+        <table>
+            <tr>
+                <th></th>
+                <td></td>
+                …
+            </tr>
+            ...
+        </table>
+7.table属性
+    border:表格边框，默认单位是像素
+    width:表格宽度，默认单位是像素
+    align:表格对齐方式（left（默认）/center/right）
+    cellpadding:单元格文本与边框的距离
+    cellspacing:单元格边框间距
+8.跨行/跨列属性主要用来绘制复杂表格。
+    rowspan:跨行
+    colspan:跨列
+9.完整表格组成：caption（标题)、thead（表头）、tbody（表体）和tfoot（表尾）四部分组成。
+10.form表单标签是所有标签最核心标签之一。它是用来实现前后端交互的一个重要标签。
+    常用属性：
+        name:表单名称
+        action:表单数据提交的地方(通常是一个后台文件名(.jsp/.php/.asp/.aspx/.py等），或网址）。如果是#，表示提交到当前文件下。
+        method:前端提交数据到后端的方法，主要有：get和post,默认的是get。
+11.表单元素分为：
+    1）input类：主用用来输入，选择或发出指令。
+        type:text/password/radio/checkbox/file/button/image/submit/reset
+            a.text:单行文本输入框 type="text"可以不写，默认值。
+                属性：placeholder(提示）/name（命名）/minlength和maxlength（最少/多输入的字符个数）/disabled（失效）/readonly（只读）
+                      value（默认值）/pattern（正则匹配）
+            b.password:密码框 属性与text一样
+            c.radio:单选钮，通常是两项以上。常用属性有：name（必须要有）/value/checked（选中）/disabled（失效）/readonly（只读）
+            d.checkbox:复选框，可以用来选择0项、1项或多项。
+                常用属性有：name（必须要有）/value/checked（默认选中）/disabled（失效）/readonly（只读）
+            e.file:文件上传按钮
+            f.button:普通按钮，通常用它去调用脚本代码。
+                常用属性有：value（按钮的标题）/disabled（失效）
+            g.image:图片按钮，用法与button一样。有一个特殊属性：src(用来加载提示图片，用它替换了value)
+                它有提交功能，与submit功能一样。
+            h.submit:提交按钮，用来将表单数据提交到后台。
+                常用属性有：value（按钮的标题）/disabled（失效）
+            j.reset:重置按钮，将表单所有组件输入的内容全部清空，还原为初始状态。
+                常用属性有：value（按钮的标题）/disabled（失效）
+    2）textarea类
+        文本域（也可以叫多行文本框），主要用于输入大批量的文本内容。
+        常用属性：name/id/cols(列数)/rows(行数)/placeholder/minlength/maxlength/required(必须输入)/value
+    3）select类
+        下拉列表框，默认用于单项选择。用option呈现每个选项。
+        multiple属性：表示可以多选，这时的下拉列表框变成了列表框
+        size:最多显示的行数
+    4）button类
+        普通按钮，具有提交功能。可以单独使用，不写在form元素中；如果写在form中，有提交功能。
+12.iframe:框架集，是用来将多个网页文件组合成一个文件。
+    常用属性：
+        name:框架名
+        src:引入的外部html文件
+        scrolling:滚动条(yes/no/auto)
+        width:宽度(%/px)
+        height:高度(%/px)
+        frameborder:是否有边框(1/0)
+        marginheight:框架离顶部和底端的距离(%/px)
+        marginwidth:框架离左右的距离(%/px)
+
+        注意：
+            在实际开发，尽量减少使用iframe，因为它破坏了前进和后退功能，且不利于SEO。
+
+1.CSS:层叠样式表，用来美化网页的。做到结构（HTML）和表现（CSS）分离。
+2.基本语法：
+    选择器 {
+        属性: 属性值;
+    }
+3.CSS引用方式：行间样式、内部样式、外部样式、导入外部样式。
+    行间样式：直接在标签上书写样式。
+    内部样式：在文件的内部书写样式。
+        <style type="text/css">
+            样式内容
+        </style>
+    外部样式：（1）先创建一个CSS文件；（2）再用link标签引入这个文件。
+    导入外部样式：（1）先创建一个CSS文件；（2）在style标签中用import导入这个样式文件。
+
+    以上四种CSS引用方式的区别：
+        行间样式只作用于当前标签；而内部样式作用于当前文件；外部样式可以被多个HTML文件引用。
+        在实际项目开发中，最好使用外部样式。
+        外部样式分为link引入和import引入两种方式。这两种方式区别：
+            1）link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+            2）link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+            3）link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+            4）link支持使用Javascript控制DOM去改变样式；而@import不支持。
+4.CSS选择器分类：
+    1）*：匹配html中所有元素（注意：*的性能差，因为它要匹配所有元素，所以在开发时，不建议使用）
+    2）标签选择器：用来匹配对应的标签
+    3）类选择器：用来选择class命名的标签
+    4）ID选择器：用来选择用id命名的标签
+    5）派出选择器：根据上下文来确定选择的标签
+    6）伪类选择器
+    7）伪元素选择器
+5.选择器的分组
+    让多个选择器（元素）具有相同的样式，一般用于设置公共样式。
+6.选择器的继承
+    子元素可以继承父元素的样式，反之不可以。
+7.样式权重
+    !important(10000)>内联样式(1000)>id选择器(100)>类、伪类和伪元素选择器(10)>标签选择器(1)
+
+8.CSS字体
+    1)font-size:字号(px/%)
+    2)font-family:字体
+    3)font-style:文字样式(normal/italic/oblique)
+    4)font-weight:文字加粗(normal/bold/bolder/lighter/100-900)
+    5)line-height:行高(px/数字/em等)
+    6)color:文字的颜色(颜色的单词/rgb()->r:0-255,g:0-255,b-0-255/16进制(以#开头，后跟6位(#rrggbb)或3位(#rgb)16进制数）
+    7)text-decoration:文字修饰(none/underline/overline/line-through)
+    8)text-align:文本对齐方式(left/right/center)
+    9)text-transform:字母大小写(capitalize/uppercase/lowercase/none)
+    10)text-indent:文本缩进(px/em/%/pt等)
+
+    Tip:
+        font复合属性：
+            font:font-style font-variant font-weight font-size/line-height font-family;
+            注意：
+                1）属性值的位置顺序
+                2）除了font-size和font-family之外，其它任何一个属性值都可以省略
+                3）font-variant：normal/small-caps（让大写字母变得小一些）
+9.CSS背景
+    1)background-color:背景色(transparent/color)
+    2)background-image:背景图(none/url)
+    3)background-repeat:背景图像铺排方式(repeat/no-repeat/repeat-x/repeat-y)
+    4)background-position:设置对象的背景图像位置({x-number | top | center | bottom } {y-number | left | center | right })
+    5)background-attachment:背景图像滚动位置(scroll/fixed)
+    6)background:设置背景的复合写法
+        background: color image repeat attachment position
+10.CSS伪类选择器
+    伪类：专门用来表示元素的一种特殊状态。
+    常用伪类选择器：
+        1)a标签的伪类：
+            :link/:visited/:hover/:active
+        2):focus 获得焦点
+        3):first-child/:last-child/:nth-child(number)
+11.属性选择器
+    [属性名]:包含有指定属性名的元素（常用）
+    [属性名=值]:属性名的值为指定值的元素（常用）
+    [属性名~=值]:属性名的值包含指定值的元素
+    [属性名^=值]:属性名的值以指定值的开头的元素
+    [属性名$=值]:属性名的值以指定值的结尾的元素
+12.关系选择器
+    1)空格：后代选择器
+    2)>：只选择儿子元素
+    3)+：兄弟选择
+13.CSS伪元素
+    1）CSS伪元素与伪类区别：
+        css引入伪类和伪元素概念是为了格式化文档树以外的信息。也就是说，伪类和伪元素是用来修饰不在文档树中的部分。
+
+        伪类用于当已有元素处于的某个状态时，为其添加对应的样式，这个状态是根据用户行为而动态变化的。
+        它只有处于dom树无法描述的状态下才能为元素添加样式，所以将其称为伪类。
+
+        伪元素用于创建一些不在文档树中的元素，并为其添加样式。比如说，我们可以通过:before来在一个元素前增加一些文本，
+        并为这些文本添加样式。虽然用户可以看到这些文本，但是这些文本实际上不在文档树中。
+
+    2）伪元素&伪类的特点：
+        伪元素和伪类都不会出现在源文档或者文档树中
+        伪类允许出现在选择器的任何位置，而一个伪元素只能跟在选择器的最后一个简单选择器后面
+        伪元素名和伪类名都是大小写不敏感的
+        有些伪类是互斥的，而其它的可以同时用在一个元素上。（在规则冲突的情况下，常规层叠顺序决定结果）
+
+    3）:before/:after/:first-letter/:first-line : 前面可以是1个冒号也可以是双冒号
+        ::selection/::placeholder/::backdrop : 前面只能是双冒号
+
+
+
+
+
+1.什么是浮动？
+    浮动就是让块级标签不独占一行。目的（使用场景）：把块级标签元素可以排在一行上。
+2.浮动的原理
+    就是让元素脱离文档流，不占用标准流。
+3.float的属性值：
+    left:左浮动
+    right:右浮动
+    none:默认值，不浮动
+4.浮动后，后面的元素不管是块级还是行级元素，不会显示在下一行。
+5.清除浮动
+    目的：让后面的元素自动掉到下一行。
+    方法：
+        1）添加空标签，并设置样式：clear:both;
+            clear:left;  清除左浮动
+            clear:right; 清除右浮动
+            clear:both;  清除左右浮动
+            clear:none;  左右浮动都不清除
+        2）在要清除浮动的父级添加样式：overflow:hidden;
+            overflow:hidden;  超出部分隐藏，也可以用来实现清除浮动。
+        3）在要清除浮动的父级添加伪元素，并设定样式：
+            父元素:after{
+                content:"";
+                display: block;
+                clear:both;
+            }
+
+    注意：在实际项目开发中，我们一般首先第2种方案。
+6.CSS盒子模型
+    每个元素都是一个盒子，一个盒子由margin（外边距），border（边框线）,padding（内边距）和content（内容）组成。
+    IE的盒子中的content又由padding和content组成。
+
+    区别外边距和内边距是以边框为参照。
+
+    系统默认外边距为8px。
+    1）外边距(margin)：指元素边框线之外的距离。
+        margin-left:左边距
+        margin-right:右边距
+        margin-top:上边距
+        margin-bottom:下边距
+        margin:可用来设置任意一个边的边距，可以带1至4个参数。
+            1个(apx)：表示上下左右都有这样的外边距apx
+            2个(apx bpx)：表示上下外边距为apx，左右外边距为bpx
+            3个(apx bpx cpx)：表示上外边距为apx，下外边距为cpx，左右外边距为bpx
+            4个(apx bpx cpx dpx)：表示上为apx,右为bpx,下为cpx,左为dpx
+    2）内边距（padding）：指元素的文本内容与边框之间的距离。
+        它的用法与margin完全一样。
+    3）边框(border)
+        border-width:边框线宽度
+        border-style:边框线样式
+        border-color:边框线颜色
+
+        复合写法（简写）：
+            border:border-width border-style border-color;
+            注意：border-width border-style border-color这三个参数没有位置之分。
+7.盒子的真实尺寸
+    盒子宽度 = width + padding左右 + border左右
+    盒子高度 = height + padding上下 + border上下
+8.display属性：用来设置元素的显示方式。
+    属性值：
+        none:不显示元素
+        block:块显示，在元素前后设置换行符。目的：将行级标签转换为块级标签（因为行级标签不识别宽高，
+            而块级标签识别，转换后，行级标签也可以设置宽高了）
+        inline:行内显示，将块级标签转换为行级标签。
+        inline-block;将块级或行级标签转换为行内块级标签。
+9.table样式
+    table一般不用来布局，主要用来格式化数据。
+    属性：
+        width:宽度
+        height:高度
+        border-collapse:collapse; 单线边框
+        border:边框线
+    td,tr属性：
+        width:宽度
+        height:高度
+        border:边框线
+        text-align:文本左右对齐(left(默认)/center/right)
+        vertical-align:文本垂直对齐(top/middle(默认)/bottom)
+10.列表样式
+    不是描述性的文本的任何内容都可以认为是列表。比如：菜单、商品列表等。
+    1）列表类型
+        无序(ul)、有序(ol)和自定义列表(dl)。
+        ul和ol的列表项都是用li表示的，而dl是由一个dt和一个或多个dd组成的。
+        dl一般用来设定一个定义，比如名词解释等。dt：标题,dd：描述，用来对dt的内容进行解释并说明的。
+    2）样式(用来修改标识类型)
+        list-style-image:用图像表示标识
+        list-style-position:标识的位置(inside/outside(默认))
+        list-style-type:标识类型
+
+        简写：
+            list-style:list-style-image list-style-position list-style-type;
+            list-style的值可以按任意顺序列出，而且可以任意省略，只要提供一个值，其它的都自动默认。
+
+        list-style-type的属性值：
+            a)无序
+                disc(默认)/circle/square
+            b)有序
+                decimal(默认)/decimal-leading-zero/lower-roman/upper-roman/lower-alpha/upper-alpha/
+                lower-greek/lower-latin/upper-latin...
+            有序和无序：
+                none
+11.轮播图
+    作用：主要用于产品或公司相关宣传。
+    组成：
+        1）轮播的组图（至少两张以上，不能太多）
+        2）控制器
+        3）计数器
+
+
+1.定位（position)（重点）
+    设定元素在文档中的位置。会将标签（元素）转换为块级。
+2.定位分类（属性值）
+    1）static:静态定位
+        默认值，没有定位，不能设置偏移值(left/top/right/bottom)，占用标准流（文档流）
+    2）relative:相对定位
+        占用标准流（文档流），它会出现在文档流中它该出现的位置。可以通过设置偏移值改变其位置。它相对于自身所占的位置做偏移。
+    3）absolute:绝对定位
+        脱离文档流，相对于body做偏移。
+        绝对定位一般与相对定位结合使用，它相对的父级是relative定义的元素做偏移。relative的元素必须是absolute的父级。
+        在项目开发中，一般用relative+absolute结合使用。
+    4）fixed:固定定位
+        脱离文档流，相对于浏览器窗口左上角（0，0）做偏移，它与relative设定的对象没有关系，也就是说，它跟父级的定位没有任何关系。
+        一般在开发中用来固定导航栏。
+3.z-index
+    当多个元素添加绝对定位，元素将会叠加在一起，使用z-index可以设置元素显示的层次。
+    文档流默认的z-index的值为0。
+    用在static和relative元素上将无效。
+4.网站开发策略：先整体再局部，至顶向下，逐步细化。
+    1）双飞翼布局
+        由三列组成，两端固定，中间自适应。
+
+        双飞翼布局的优点：
+        （1）兼容性好，兼容所有主流浏览器，包括万恶的IE6。
+        （2）因为在DOM中center_panel在三列结构的最前面，因此可以实现主要内容的优先加载。
+    2）圣杯布局
+        由三列组成，两端固定，中间自适应。外观与双飞翼布局一样。
+        布局时与双飞翼比增加了定位和偏移设置。
+    3）侧边栏固定布局
+        I）两栏布局
+            a)左侧固定，右侧自适应
+            b)左侧自适应，右侧固定
+            c)左右都固定
+        II）三栏布局
+            a)左侧固定，中间自适应，右侧固定
+            b)左侧自适应，中间和右侧固定
+            c)左侧和中间固定，右侧自适应
+5.BFC&IFC
+      FC:Fomatting Context(格式上下文)。它是CSS2.1规范中的一个概念。它是页面中的一块渲染
+  区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。
+  分为：BFC和IFC。
+  1）BFC：块级格式上下文
+        a）形成BFC的条件
+            i) 浮动元素（float除none以外的值）
+            ii）定位元素（position(absolute/fixed))
+            iii）display（值为inline-block/table-cell/table-caption时）
+            iv）overflow（值为hidden/auto/scroll时）
+        b）BFC特性（规则）
+            i)内部的盒子会在垂直方向上一个接一个的放置
+            ii)垂直方向上的距离会叠加，值由最大margin值决定（如果不要叠加，就需要将该盒子变成一个独立的盒子）
+            iii)BFC的区域不会float元素区域重叠
+            iv)计算BFC的高度时，浮动元素也参与计算
+            v)BFC就是页面上的一个独立的容器，容器里面的子元素不会影响到外面的元素
+        c）BFC的作用
+            i)解决margin重叠的问题（添加独立BFC）
+            ii)解决浮动高度塌陷的问题（在父级添加overflow:hidden）
+            iii)解决侵占浮动元素的问题（添加overflow:hidden清除浮动）
+  2）IFC：内联（行级）格式上下文
+         a）形成IFC的条件
+            i)font-size
+            ii)line-height
+            iii)height
+            iv)vertical-align
+         b）IFC特性（规则）
+            i)IFC的元素会在一行中从左至右排列
+            ii)在一行上的所有元素会在该区域形成一个行框
+            iii)行宽的高度为包含框的高度，高度为行框中最高元素的高度
+            iv)浮动的元素不会在行框中，并且浮动元素会压缩行框的宽度
+            v)行框的宽度容纳不下子元素时，子元素会换下一行显示，并且会产生新行框
+            vi)行框的元素内遵循text-align和vertical-align
+6.容器的高度：
+    height = line-height + vertical-align
+	
+	
+	1.HTML5由W3C和WHAT组织机构共同研发出来的，于2014年正式发布。
+2.HTML5成为了新一代网页开发标准。
+3.HTML5新特性（面试）
+    1）增加了audio和video音频播放，抛弃了Flash
+    2）新增了canvas画布（绘画，制作动画（如小游戏开发等））
+    3）地理定位
+    4）增加了离线缓存
+    5）硬件加速
+    6）Web Socket（全双工通信）
+    7）增加了本地存储
+    8）新增了一些语义化标签
+4.网页布局标签
+    header:页首
+    nav:导航栏
+    aside:侧边栏
+    main:主体
+    section:区块
+    article:文章
+    footer:页尾
+5.语义化标签
+    1)mark:高亮显示(行级)
+    2)details(描述)与summary(摘要):一般用于名词解释或用于封装一个区块等
+    3)meter:定义度量衡
+        属性:value/min/max
+    4)progress:进度条
+        属性:value/min/max
+    5)dialog:对话框或窗口
+    6)figure:用于对元素进行组合（一般用来组合一张图的标题、图片和图片描述等）
+6.HTML5多媒体
+    1)audio
+        播放音乐或音频。IE9以下的版本不支持。
+
+        a)支持的格式
+            .mp3/.ogg/.wav
+        b)属性
+            src:文件路径
+            autoplay:自动播放
+            loop:循环
+            controls:控制条
+            muted:静音
+            preload:预加载（当使用autoplay时，preload自动失效）
+    2)video
+        加载视频。IE9以下的版本不支持。
+
+        a)支持的格式
+            .mp4/.ogg/.webm
+        b)属性
+            src:文件路径
+            autoplay:自动播放
+            loop:循环
+            controls:控制条
+            muted:静音
+            preload:预加载（当使用autoplay时，preload自动失效）
+            width:宽度
+            height:高度
+            poster:海报
+    3)embed
+        嵌入内容或加载插件。
+
+        属性:
+            src:文件路径
+            width:宽度
+            height:高度
+            type:类型
+    4)canvas
+        画布。是一个容器元素。
+        注意：
+            a.单独使用canvas没有什么意义，它必须结合Javascript使用。它的具体功能体现是通过
+        Javascript体现现来的。
+            b.canvas的宽高最好不要通过css实现，而是直接使用标签属性width和height实现。
+7.HTML5常用属性
+    1）contentEditable
+        将标签转换为可编辑状态。可用于所有标签。它的值有true/false。
+    2）hidden
+        对元素进行隐藏。一般用来传值或当某个条件成立，执行内容显示。默认值为hidden。
+    3）data-*
+        用于存储页面或应用程序的私有自定义数据。一般用于传值。
+    4）multiple
+        规定输入域中可选择多个内容。用于表单组件中，如file/select。
+    5）required
+        约束表单元互在提交前必须输入值。用于表单组件中，需要结合提交按钮使用。
+    6）pattern
+        用于验证输入字段的模式。用于表单组件中，需要结合提交按钮使用。
+8.表单组件
+    1）color：颜色
+    2）email：邮箱
+    3）tel：电话号码
+    4）url：网址
+    5）number：数字
+    6）range：范围
+    7）search：搜索
+    8）date：日期
+    9）datetime：日期时间
+    10）datetime-local：本一日期时间
+    11）year：年份
+    12）month：月份
+    13）time：时间
+9.表单属性
+    1）formaction:修改action数据提交的地方
+    2）formenctype:修改表单请求的类型
+    3）formmethod:修改数据提交的方法
+    4）form:设置表单元素属于哪个表单
+    5）novalidate:不验证
+10.input属性
+    1）autocomplete:自动完成
+        用来帮助用户输入，每一次输入的内容，浏览器是否保存输入的值，以备将来使用。值有：
+    on/off，默认为on。
+        为了保护敏感数据（如用户帐号、密码等），避免本地浏览器对它们不安全存储，一般需要关闭。
+    2）autofocus:自动获焦
+    3）step:步长
+    4）multiple:多选
+    5）pattern:正则匹配
+    6）placeholder:输入提示
+    7）required:必须输入
+	
+	
+	
+	
+	
+	
+1.CSS3是CSS2.1的一个升级版，它是对CSS的一个扩展。
+2.CSS3的主要新特性：
+    1）选择器
+    2）阴影
+    3）形状转换（2D <-> 3D）
+    4）变形
+    5）动画（过渡动画、帧动画）
+    6）边框
+    7）多重背景
+    8）反射
+    9）文字
+    10）颜色函数（rgba/hsl/hsla）
+    11）滤镜（filter）
+    12）弹性布局
+    13）多列布局
+    14）栅格布局
+    15）盒模型
+    16）Web字体
+    17）媒体查询
+ 3.CSS3不是属于浏览器或同一浏览器的不同版本都支持，所以需要兼容处理，通常的做法就是加厂商前缀。
+    1）主流浏览器内核（面试点）
+        a)Trident: IE内核
+        b)Webkit：Chrome和Safari内核
+        c)Gecko：FireFox内核
+        d)Blink（是Webkit的一个分支）： Chrome和Opera内核
+
+        Tips（技巧）:
+            目前国内的浏览器大多都是双核的（IE内核+Chrome内核）
+    2）厂商前缀
+        IE： -ms-
+        Chrome&Safari： -webkit-
+        FireFox： -moz-
+        Opera： -o-
+
+4.CSS3选择器
+    丰富选择的目的：在标签中减少class和id属性的使用。
+    1）属性选择器
+        [属性名]
+        [属性名=属性值]
+        [属性名^=属性值]
+        [属性名$=属性值]
+        [属性名*=属性值]
+    2）结构性伪类
+        :first-child
+        :last-child
+        :nth-child(n)
+        :nth-last-child(n)
+        :nth-of-type(n)
+        :nth-last-of-type(n)
+        :only-child
+        :only-of-type
+        :empty
+    3）目标伪类
+        :target
+    4）UI元素状态伪类
+        :checked  (只在Opera浏览器中有效)
+        :disabled
+        :enabled
+        :selection
+    5）否定伪类
+        :not()
+    6）通用兄弟元素选择器
+ 5.CSS3文本
+        1） 文本阴影（主流浏览器都支持，（IE9以上支持））
+             text-shadow: 水平偏移距离 垂直偏移距离 [模糊距离] [阴影的尺寸] [颜色] [inset];
+        2）文本自动换行（主流浏览器都支持）
+             word-wrap: normal|break-word;
+        3）单词拆分（主流浏览器都支持）
+             word-break: normal|break-all|keep-all;
+        4）文本拆分（所有主流浏览器都不支持）
+            text-wrap: normal|none|unrestricted|suppress;
+        5）文本溢出
+            a)单行文本溢出（重要）
+                text-overflow: clip|ellipsis|string;
+
+                处理文字溢出样式：
+                    width: px/%/em/rem...;
+                    white-space: nowrap; /* 为允许折行 */
+                    -ms-text-overflow: ellipsis; /* 处理IE兼容 */
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+            b)多行文本溢出（IE9以下的版本不支持，主要是谷歌支持）
+                width: px/%/em/rem...;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 行数;
+                overflow: hidden;
+6.CSS3边框
+    1）圆角边框（掌握）
+         border-radius: 1-4 length|% / 1-4 length|%;
+
+         四个方位的词：top-left/top-right/bottom-left/bottom-right
+    2）边框阴影（IE9以上支持）
+        box-shadow: 水平偏移距离 垂直偏移距离 [模糊距离] [阴影的尺寸] [颜色] [inset];
+    3）边框图片(IE11.0及以后版本支持）
+        border-image：图片 向内偏移距离 宽度 图像区域超出边框的距离 重复效果;
+
+        重复效果：round/strech/repeat
+7.CSS3背景
+    1）多重背景
+        background: 背景色 背景图片 平铺方式 位置,背景色 背景图片 平铺方式 位置,...
+    2）background-size：设定背景图像的尺寸。
+        background-size: 固定长度|百分比值|cover|contain;
+    3）background-origin：指定背景图像的位置区域。
+        background-origin: padding-box|border-box|content-box;
+    4）background-clip：设定背景的绘制区域。
+        background-clip: border-box|padding-box|content-box;
+    5）渐变背景
+        background-image: 线性渐变｜径向渐变
+8.CSS3颜色函数
+    1）RGBA
+        rgba(r,g,b,a)
+        r:红色        取值范围：0-255/0-100%
+        g:绿色        取值范围：0-255/0-100%
+        b:蓝色        取值范围：0-255/0-100%
+        a:不透明度    取值范围：0-1的一个小数
+    2）HSL
+        hsl(h,s,l)
+        h:色调        取值范围：0-360
+        s:饱和度      取值范围：0-100%
+        l:亮度        取值范围：0-100%
+    3）HSLA
+        hsla(h,s,l,a)
+        h:色调        取值范围：0-360
+        s:饱和度      取值范围：0-100%
+        l:亮度        取值范围：0-100%
+        a:不透明度    取值范围：0-1的一个小数
+9.opacity
+    调整元素的不透明度，大多数情况下用于做元素的遮罩效果。取值范围：0-1的一个小数
+    IE8及8以下版本不支持opacity，处理兼容的方式，再添加一行代码来处理不透明度：
+        filter:alpha(opacity=数值）    数值的范围：0-100
+10.CSS3渐变
+    渐变主要用来设置背景或制作三维图。
+    1）线性渐变
+        background: linear-gradient(方向或角度, 颜色1 百分比, 颜色2 百分比, ...);
+
+        方向：
+            to left:从右向左渐变
+            to right:从左向右渐变
+            to top:从下向上渐变
+            to bottom:从上向下渐变
+            to top left:从右下角向左上角渐变
+            to top right:从左下角向右上角渐变
+            to bottom left:从右上角向左下角渐变
+            to bottom right:从左上角向右下角渐变
+        角度：
+            比如45度角，应该表示为：45deg
+        颜色取值：
+            1）表示颜色的单词
+            2）16进制颜色
+            3）表示颜色的函数（rgb()/rgba()/hsl()/hsla()...)
+    2）径向渐变(沿半径方向渐变）
+        background: radial-gradient(形状 渐变大小 at 位置,颜色1 百分比, ..., 颜色n 百分比);
+
+        形状：
+            ellipse:椭圆径向渐变（默认）
+            circle:圆径向渐变
+        渐变大小：
+            farthest-corner:渐变的半径长度为从圆心到离圆心最远的角（默认）
+            closest-side:渐变的半径长度为从圆心到离圆心最近的边
+            closest-corner:渐变的半径长度为从圆心到离圆心最近的角
+            farthest-side:渐变的半径长度为从圆心到离圆心最远的边
+        位置：
+            center:设置圆心在中心位置（默认）
+            top:设置圆心在顶部位置
+            bottom:设置圆心在底部位置
+            at 圆心橫坐标 圆心纵坐标: 设定圆心的位置在指定的（橫坐标，纵坐标）处
+    3）文字渐变
+        background-image: 线性渐变或径向渐变;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+11.box-sizing
+    允许你以某种方式定义某些元素，以适应指定的区域。
+    box-sizing: content-box/border-box （火狐和谷歌低版本需要厂商前缀）
+
+
+
+
+1.变形(transform）
+    translate(x,y) 定义 2D 转换，沿着 X 和 Y 轴移动元素。 位移效果
+    translateX(n) 定义 2D 转换，沿着 X 轴移动元素。
+    translateY(n) 定义 2D 转换，沿着 Y 轴移动元素。
+
+    scale(x,y) 定义 2D 缩放转换，改变元素的宽度和高度。 缩放效果
+    scaleX(n) 定义 2D 缩放转换，改变元素的宽度。
+    scaleY(n) 定义 2D 缩放转换，改变元素的高度。
+
+    rotate(angle) 定义 2D 旋转，在参数中规定角度（-360deg - 360deg）。 旋转效果
+
+    skew(x-angle,y-angle) 定义 2D 倾斜转换，沿着 X 和 Y 轴。  变形效果
+    skewX(angle) 定义 2D 倾斜转换，沿着 X 轴。
+    skewY(angle) 定义 2D 倾斜转换，沿着 Y 轴。
+
+    matrix(a,b,c,d,e,f)  定义 2D变形，使用了6个值的矩阵。表示如下：
+        a   c   e
+        b   d   f
+        0   0   1
+
+        matrix用一个3行3列的矩阵表示，a和b列表示x轴，c和d列表示y轴，e和f列表示z轴
+        a和d表示缩放（如果没有缩放，值设为1）
+        b和c表示扭曲（如果没有扭曲，值为0）
+        e和f表示位移（如果没有位移，值为0）
+
+        如果旋转角度为θ,它会影响到a,b,c,d的值：
+            a = cosθ
+            b = sinθ
+            c = -sinθ
+            d = cosθ
+        如果扭曲skew(θ1,θ2)，会影响到b和c的值：
+            b = tanθ1
+            c = tanθ2
+
+        每次旋转和扭曲都会产生一个新矩阵，最终形成的多个矩阵要做乘法运算。
+        如果对一个元素同时有旋转、扭曲、缩放和位移，这里需要用到多个矩阵相乘，要优先考虑旋转和缩放！！！
+2.transform-origin：调整元素的基点。
+    transform-origin: x-axis y-axis z-axis;
+    属性值：
+        x-axis ：定义视图被置于 X 轴的何处。可能的值：left，center，right，length，%。
+        y-axis ：定义视图被置于 Y 轴的何处。可能的值：top，center，bottom，length，%。
+        z-axis ：定义视图被置于 Z 轴的何处。可能的值：length。
+3.perspective
+    让子元素获得透视效果。
+    perspective:length|none;
+
+    主流浏览器都不支持，谷歌要加-webkit-，或在长度后加单位。
+
+4. transform-style
+    在3D空间中呈现被嵌套的元素(必须与 transform 属性一同使用)。
+
+    transform-style: flat|preserve-3d;
+
+5.rotateZ
+  沿着Z轴的方向顺指针旋转。
+
+6.transition:过渡动画
+    1）常规用法：
+        transition-property
+        transition-duration
+        transition-timing-function
+        transition-delay
+    2）简洁（复合）用法：
+        transition: property-name-list|all duration timing-function delay;
+
+        a）可以使用的属性有：
+            i)颜色：
+                color background-color border-color outline-color
+            ii)位置：
+                background-position left right top bottom
+            iii)长度：
+                max-height min-height max-width min-width height width
+                border-width margin padding outline-width outline-offset
+                font-size line-height text-indent vertical-align
+                border-spacing letter-spacing word-spacing
+            iv)数字：
+                opacity visibility z-index font-weight zoom
+            v)组合：
+                text-shadow transform box-shadow clip
+            vi)其它
+                gradient
+        b)duration:动画持续时间，一般以秒(s)或毫秒(ms)为单位
+        c)timing-function:动画函数
+            i)linear:匀速
+            ii)ease:变速（先慢后快，最后再慢）
+            iii)ease-in:变速（由慢到快）
+            iv)ease-out:变速（由快到慢）
+            v)ease-in-out:变速（慢速开始，慢速结束）
+            vi)cubic-bezier(n,n,n,n):自行设定变速，n的值在0-1之间
+        d)delay:动画延时时间，一般以秒(s)或毫秒(ms)为单位
+
+7.关键帧动画
+    步骤：
+        1）设置关键帧
+            a)如果只有两个关键帧
+                @keyframes 动画名 {
+                    0%:{样式表}
+                    100%:{样式表}
+                }
+                或：
+                @keyframes 动画名 {
+                    from:{样式表}
+                    to:{样式表}
+                }
+             b)如果是多个关键帧
+                @keyframes 动画名 {
+                    0%:{样式表}
+                    25%:{样式表}
+                    60%:{样式表}
+                    ...
+                    100%:{样式表}
+                }
+                注意：这里的百分比一般是升序值，可以是0%-100%之间的做任意值，也可以是倒序。
+        2）实施动画
+            a)常规用法
+                animation-name：来自于@keyframes定义的动画名
+                animation-duration：动画持续时间，一般以秒(s)或毫秒(ms)为单位（默认为0）
+                animation-timing-function：动画函数
+                    i)linear:匀速（默认值）
+                    ii)ease:变速（先慢后快，最后再慢）
+                    iii)ease-in:变速（由慢到快）
+                    iv)ease-out:变速（由快到慢）
+                    v)ease-in-out:变速（慢速开始，慢速结束）
+                    vi)cubic-bezier(n,n,n,n):自行设定变速，n的值在0-1之间
+                animation-delay：动画延时时间，一般以秒(s)或毫秒(ms)为单位
+                animation-iteration-count：动画循环播放的次数
+                    1)number：按设定次数循环播放（默认次数为1次）
+                    2)infinite：一直循环播放
+                animation-direction：动画播放完后是否反向播放
+                    1）normal:不反向（默认值）
+                    2）alternate:反向
+                animation-play-state：动画播放或停止播放
+                    1）paused:停止播放
+                    2）running:播放（默认值）
+            b)简洁用法
+                animation:name duration timing-function delay iteration-count direction;
+
+
+
+
+
+
+	
+	
+	1.多列（分栏）
+    1）column-count 规定元素应该被分隔的列数（栏数）。
+        column-count: number|auto;
+    2）column-gap 设置栏间距。
+        column-gap: length|normal;
+    3）column-rule 设置栏间分隔线。
+        a)column-rule-style：设置线型。
+            none 没有分隔线
+            hidden 隐藏线
+            dotted 点线
+            dashed 虚线
+            solid 实线
+            double 双线
+            groove 3D沟槽效果
+            ridge 3D脊状效果
+            inset 3D左上角阴影效果
+            outset 3D右下角阴影效果
+
+            注意：
+                3D线型在分栏中没有3D效果，当实线处理了。
+        b)column-rule-width：设置线宽。
+        c)column-rule-color：设置分隔线颜色。
+
+        简洁（复合）写法：
+            column-rule:width style color;
+    4）column-width 设置栏宽。
+        column-width: length|auto;
+    5）columns：是column-width 和 column-count 的简写方式。
+        columns: width count;
+
+2.flex弹性布局
+    CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元
+素拥有恰当的行为的布局方式。
+    目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。
+
+    常用的属性：
+        1）flex-direction（应用于父元素）
+            flex-direction 指定子元素在父容器中的位置。
+
+            语法：
+                flex-direction: row | row-reverse | column | column-reverse
+
+            参数：
+                row ：横向从左到右排列（左对齐），默认的排列方式。
+                row-reverse ：反转横向排列（右对齐，从后往前排，最后一项排在最前面。
+                column ：纵向排列。
+                column-reverse ：反转纵向排列，从后往前排，最后一项排在最上面。
+        2）justify-content（应用于父元素）
+            把弹性项沿着弹性容器的主轴线对齐。
+
+            语法：
+                justify-content: flex-start | flex-end | center | space-between | space-around
+
+            参数：
+                flex-start：紧凑方式左对齐（默认值）
+                flex-end：紧凑方式右对齐
+                center：紧凑方式居中对齐
+                *space-between：除了第1个和最后1个子元素外，其它子元素等分空白区域
+                *space-around：所有子元素等分空白区域
+        3）align-items（应用于父元素）
+            子元素在侧轴（纵轴）方向上的对齐方式。此属性作用于父容器。
+
+            语法：
+                align-items: flex-start | flex-end | center | baseline | stretch
+
+            参数：
+               flex-start:沿纵轴顶端对齐（默认值）
+               flex-end:沿纵轴底端对齐
+               center:沿纵轴垂直居中对齐
+               baseline:沿纵轴基线对齐
+               stretch:纵向拉伸对齐
+        4）flex-grow（应用于子元素）
+            子元素的放大比例，默认为0，即如果存在剩余空间，也不放大。
+            语法：
+                flex-grow：number;
+        5）flex（应用于子元素）
+            用于指定弹性子元素空间分配。
+            语法：
+                flex: auto | initial | none | inherit | [ flex-grow ] || [ flex-shrink ] || [ flex-basis ]
+            参数：
+                auto : 等价于 1 1 auto。
+                initial : 等价于 0 1 auto。
+                none ：等价于 0 0 auto。
+                inherit ：从父元素继承。
+
+            Tips:
+                flex可以带1-3个参数。
+                1）带1个参数
+                    a)无单位，这个数值会被当作flex-grow（放大）的值
+                    b)带单位，这个数值会被当作flex-basis（基本宽度）的值
+                    c)auto（自动宽度）|initial（初始宽度）|none（无）
+                2）带2个参数
+                    第1个参数必须是一个无单位的数值，它会被当作flex-grow的值。
+                    第2个参数：
+                        a)无单位，这个数值会被当作flex-shrink（收缩比率）的值
+                        b)带单位，这个数值会被当作flex-basis（基本宽度）的值
+                3）带3个参数
+                    第1个参数必须是一个无单位的数值，它会被当作flex-grow的值。
+                    第2个参数也必须是一个无单位的数值，它会被当作flex-shrink（收缩比率）的值。
+                    第3个参数必须是一个有效的宽度值（带单位），它会被当作flex-basis（默认基准宽度值）的值
+3.响应式布局
+    1）响应式布局概念
+        Responsive Design，在实现不同屏幕分辨率的终端上浏览网页的不同展示方式。
+        通过响应式设计能使网站在手机和平板电脑上有更好的浏览阅读体验。
+    2）响应式布局和自适应布局的区别（面试问题）
+        响应式布局只开发一套代码，通过检测视口的分辨率，针对不客户端在客户端做代码处理，来展现不同的布局和内容；
+        自适应需要开发多套界面，通过检测视口的分辨率，来判断当前访问的设备是PC端、平板、手机等，从而请求服务层，返回不同的页面。
+
+        响应式布局等同于流动网格布局，而自适应等同于使用固定分割点来进行布局。
+
+        自适应布局给出了更多的设计空间，只用考虑几种不同的状态就可以了；
+        而响应式布局要考虑上百种不同的状态，虽然有些状态差异较小，但也要考虑到。
+     3）响应式布局开发实现方法
+        a)媒体查询
+        b)百分比布局
+        c)rem布局（相对于根节点（元素）html中的字号布局）
+        d)视口单位布局(vw/vh)
+     4）响应式设计步骤
+        a)设置meta标签
+        b)通过媒体查询来设置样式
+        c)设置多种视图的宽度
+            i)宽度需要使用百分比/rem/vw$vh等
+            ii)处理图片缩放
+            iii)其它属性处理
+                如pre/iframe/video等，都要缩放其大小，table，建议不要增加padding属性，低分辨率下要使用内容居中操作。
+
+4.媒体查询
+    步骤：
+        1）设置meta标签
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,maxium-scale=1.0,user-scaleable=no">
+
+            说明：
+                以上标签的内容只能被移动设备识别。
+                viewport：视口（移动端）。
+                width=device-width：宽度等于当前设备的宽度。
+                initial-scale=1.0：初始缩放比例（默认为1.0）
+                minimum-scale=1.0：允许用户缩放到的最小比例（默认为1.0）
+                maximum-scale=1.0：允许用户缩放到的最大比例（默认为1.0）
+                user-scaleable=no：用户是否可以手动缩放（默认为no）
+        2）设置IE渲染方式默认为最高版本
+            <meta http-equiv="x-ua-compatible" content="IE=Edge,chrome=1">
+
+            说明：
+                以上代码表示如果浏览器有chrome插件，将以chrome提供的V8引擎渲染页面；如果没有，将以IE
+            的最高版本渲染页面。
+        3）引入兼容的JS文件
+            <!-- [if lt IE 9]>        条件Hack
+                <script src="https://oss.maxcdn.cm/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                <script src="https://oss.maxcdn.cm/libs/respond.js/1.3.0/respond.min.js"></script>
+            <![endif] -->
+
+            说明：
+                因为IE8及IE8以下版本既不支持html5，也不支持CSS3 Media，所以我们需要加载JS文件来处理这个兼容。
+                上面的代码是一个注释语句，也就是说，IE9及以上的版本不会编译这几行代码。
+        4）进入CSS3提供的媒体查询
+            a）引入外部CSS文件时使用
+                <link rel="stylesheet" href="css/screen480.css" media="screen and (max-width:480px)" >
+                    如果屏宽为480px及以下，将加载screen480.css文件。
+                <link rel="stylesheet" href="css/screen800.css" media="screen and (min-width:480px) and (max-width:800px)" >
+                    如果屏宽为480px以上且在800px以下，将加载screen800.css文件。
+                <link rel="stylesheet" href="css/screengt800.css" media="screen and (min-width:800px)" >
+                    如果屏宽为800px以上，将加载screengt800.css文件。
+
+                设备：
+                    all:所有设备
+                    screen:PC端显示器
+                    print:打印机或打印预览图
+                    handheld:便携设备
+                    tv:电视
+                    speech:音频合成器
+                    braille:盲人点触设备
+                    embossed:盲人打印机
+                    projection:投影设备
+                    tty:固定密度字母栅格设备
+
+                    only:用来排除不支持媒体查询的浏览器
+            b）在style标签中用@media定义
+                如：
+                     @media screen and (max-width: 480px){
+                        .menu{
+                            display: none;
+                        }
+                     }
+5.web字体
+    开发者引入外部字体。
+
+    语法：
+        @font-face {
+            font-family: 字体名;
+            src: url("字体文件.ttf") format("字体文件格式以处理浏览器兼容"),url(字体文件.woff) format(...),...;
+        }
+
+    说明：
+        可以同时引入多个字体文件，字体一样，文件的扩展名不一样，目的是为了处理浏览器兼容。
+
+        eg:
+             @font-face {font-family: "iconfont";
+                src: url('iconfont.eot?t=1585647107785'); /* IE9 */
+                src: url('iconfont.eot?t=1585647107785#iefix') format('embedded-opentype'), /* IE6-IE8 */
+                url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAScAAsAAAAACTAAAAROAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqFUIRIATYCJAMUCwwABCAFhG0HSBvUByMRNntQMpL9c4HDS8ZfIO5Y1qSPewjh3vAB27QtWuSZ/vo2fXsLTLhNHImbHhWRS+uQekS1pkLN/4wAWN79HjSSRpTtFiWRkDQt6GKw35w/YDthItSILHpUeG1zVEhfmm770vwGCJAh/ce9qpkTbD77Frc5FiaUC2BoAsWCe3Tawoq1gNhh7OIyngYIoK3ZQrdDbCooiGnrEIDuTlIECjGzuISN5Lo052gs+EBTHr6pywB2uH+P/rAUoCQRbWsiE1YKgXKePAmz/1m42yiQ9OcEAOYUwIAtAA7okeueBdhP28JKaTbHCQBouVDY1zQD+VGe9P8/oXxF2lJ3A6qXf7wYlNLUihAfmOEg55kIoJAbIAAjj0AAQp4kvTFqLjpCA3zgDUA5jWbqk7gCgfCglsLnjxoEvf7vpje0oLt3F5OHdZtux5oKq7tpOrySajri1iEiO6STVnUnjMhcxDXiBu2eEesDm0U1Izot2jUNYlR+cl5lJU1LqxEuryFEViWkFlb1mtJSUlnJVhGniHQ1CSoHExQkFTGZ2l6armQK6moFgspO2HT2rijdXNot6iApFt+7l97P27vuGLGNurI7wq46wbzOXrZPNlDebyitLq+RVbGVEklNrFkqKK3UqhWWVWW/T1QkFXU360iY+pZDU1pldaygtLcIE4pgwpQ673cL1tw4h0pBTiJdFBFX+gIOAt9y1q8h1d4B5Xg4BM3m58aLPffM0x5PV5q3PWjMwsMnOTtO6MdoxBxU9wr8ODiopKFlUnKLfkriyRfSDL4znjylm5OX0F7frBRRIkMYHiKWY99sVcq+OygDjyESnsvz9XNdVltal/yMZdDWQFNBdoxge2GqkmGRKI2yVGL4zbuDMsxDt0AI/Uwx0TnU1GbHpwNpnA3uvbw9npBmpKt+dHQVWUqWQMjaa3sPG281uvTp5lWErtrbLhltNT4Maf6CPwa+3x2K0dU/fPxPvkjYdN3yWcJmCtrjIw5GvJusuP4B7KyYfAfLwAEA4P8H3IwtXS6LjTDLPU49xcHZUXwDJ/0yy9icsS5Q8f2tQK5V38M+B4xC/1kOtBO/d43akh9EUrODI8s0CzcWW02x6OX63lo1JfWVwG/hV/e0H62wdjUAkluEQMmsAMtt0Bz8Drgqe+DJHYG2FXGamCwALIgLwNpGAIHeCIRaP4j0rqBj/BNILH2GVB+G0hnp9a8kzHO9LaMSjCD4AxdSpg2b9LzaE5oyURyVuZwbcuFiMLZ3TOaOmCH3saP4mImIBs2UwgE8D5OEIGfyGMrAiuSboQOT902DkNJKTwiGFIEiIPAHOCGS0XZv0Uv9/gkySgmFS9pKwjeIFdzkYGxgVAN9VGe12s5lduHDmBBC41UaIylwgE6U6GkC8vxFHgqJAdsimdsYom66rnowvja9xmMA0LSruAGFMOIgLuIBfqqs/XPK2e8Wbe9UJlQ2LKVYqQAAAA==') format('woff2'),
+                url('iconfont.woff?t=1585647107785') format('woff'),
+                url('iconfont.ttf?t=1585647107785') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+                url('iconfont.svg?t=1585647107785#iconfont') format('svg'); /* iOS 4.1- */
+             }
+
+6.iconfont图标字体
+    由阿里巴巴提供的一种图标字体。
+    步骤：
+        1）进入官网http://iconfont.cn，注册并登录
+        2）创建一个项目
+        3）添加图标到购物车
+        4）将购物车中的图标添加到项目中
+        5）下载iconfont文件，解压后，将部分文件复制到我的网页项目中
+        6）使用字体图标前，先引入iconfont.css文件
+        7）使用字体图标方法：
+            a)用类名
+                <div class="iconfont icongerenzhongxin"></div>
+            b)用unicode值（微信小程序开发不支持这种写法）
+                <div class="iconfont">&#xe62f;</div>
+
+
+
+	1.PS由美国Adobe开发的一款用来处理图像的软件。Adobe开发另外一款软件Illustrator（AI），它是用来作图的，它主要跟加拿大开的CorelDRAW抢占市场。
+	PS是用来处理位图的，而AI是用来处理矢量图的。
+2.位图和矢量图
+	位图是由像素点组成的，文件较大，放大会失真，一般用来表示人物、风景等；矢量图是由线条组成的，文件较小，放大后不会失真，一般用来表示工程图等，是由若干个几何图形拼合而成。
+3.分辨率
+	又叫解析度、解像度。可分为显示分辨率、图像分辨率、打印分辨率和扫描分辨率等。
+	图像分辨率就是单位英寸中所包含的像素点数。分辨率越高意味着图像越清晰，但这个图像文件也越大。
+4.位分辨率
+	又叫色彩深度或位深度，批一个像素中，每个颜色分量（Red,Green,Blue，Alpha通道）的比特数。
+	位指的是二进制数或比特(bit)。
+
+	常见的位分辨率有：
+		1位：2种颜色（黑白二色）
+		2位：4种颜色
+		3位：8种颜色，用于早期的电脑显示器
+		...
+		8位：256种颜色，灰阶，有256种灰色（包括黑白）
+		...
+		16位：可以组合出64k种颜色
+		24位：1670多种颜色，真彩色，能提供比肉眼能识别更多的颜色，主要用于拍摄照片
+		...
+
+		位数越高，意味着颜色越接近生活中的真彩色，但文件也就越大。
+5.网页所支持的图片格式
+	1）.jpg
+		24位压缩格式的图片，压缩率越大的图片，显示的内容越模糊，文件会越小。
+	2）.png
+		是一种无损压缩的位图图形格式，背景为透明效果，使彩色图像的边缘能与任何背景平滑地融合，从而彻底地消除锯齿边缘
+	3）.gif
+		分为GIF格式的动画和静态图像也是高压缩的图像文件。静态图像也是高压缩的图像文件。
+	4）.svg
+		HTML5新增的矢量图，一般用作图标字符。
+	5）Base64（图像编码）
+		设计时把图像文件解析成字符编码，浏览器会自动将其再还原为图像。实际上也是一种加密方法。
+		很少使用这种用法，图像越大，编码量就越多，所以一般对大图不做base64编码处理。
+
+		base64图片编码网站：https://tool.oschina.net/encrypt?type=4
+	6）.ico或.cur
+		图标文件，一般用作网站的logo
+6.svg矢量图使用步骤
+	1）进入到官网https://icomoon.io/
+	2）将svg图导入到icomoon网站中，选中，下载
+	3）将fonts和style.css复制到项目中
+	4）将style.css引入到网页文件中
+	5）使用：
+		用类名引入图标，并在图标名前加上icon-前缀。
+			<span class="icon-favorite"></span>
+	6）然后就可以像文字一样去设置其大小和颜色等属性
+
+7.psd
+	psd是PS所特有的文件格式，它含有图层。一般UI工程师给的UI图是psd格式，可以用它切图。
+
+8.PS操作快捷键
+	1）缩放
+		双击“缩放工具”，可以将图像显示比例调成100%。
+		Alt+鼠标滚轮：可以缩放图像显示比例。
+	2）F7：打开/隐藏图层调板
+	3）Alt+Delete：前景色填充
+	4）Ctrl+Delete：背景色填充
+	5）x：交换前景色和背景色颜色
+	6）d：前景色和背景色还原为黑白色
+	7）Ctrl+d：取消选区
+	8）Ctrl+t：变换图像大小的旋转方向，按shift键等比缩放，按Alt+Shift沿中心点等比缩放
+	9）v：切换到移动工具，z：缩放工具，c：切片工具，h：抓手工具，t:文字工具，g：渐变工具
+	10）Ctrl+z：撤销一次操作，Ctrl+Shift+z：撤销一次操作（撤销一次操作也可以通过撤销历史记录实现）
+	11）打开调板：F5->画笔，F6->颜色，F7->图层，F8->信息，Alt+F9->动作
+	12）Ctrl+e：向下合并图层
+	13）Ctrl+Alt+Shift+s：导出切片图（旧版用法）
+9.颜色模式
+	1）位图：黑白图
+	2）灰度：采用256级灰阶
+	3）RGB：显示色，用于屏幕显示（网页采用的是这种颜色模式）
+	4）CMYK：油墨色，也叫打印色
+	...
+10.新建文件时分辨率设置
+	1）用于显示的图像的分辨率设为72ppi左右
+	2）一般打印的图像的分辨率为170ppi左右
+	3）高精度打印的图像的分辨率为300ppi左右
+11.如果要新建的图像文件最终存为png格式，背景要设为透明。
+12.在PS中图像编辑时，实际图像是由多个图层组成的。	
+13.工具框分为：
+	1）选框或选择工具区
+	2）绘图区（编辑区）
+	3）绘矢量图区和文字编辑区
+	4）缩放、颜色、蒙版区
+14.栅格化文字：把文字转换为一般图层。
+15.雪碧图（面试点）
+	也叫精灵图，是把多张小图放在一张大图中，目的是为了减少服务器请求次数，达到优化目的。
+	1）优点
+		减少http请求次数
+		减少图片数量，提升网页加载速度
+		减少网络带宽占用
+	2）缺点
+		提高了网页开发和维护成本。
+		合并内容性图片会影响页面的可读性，语义化降低
+	3）应用场景
+		一般只有描述性图片用来制作雪碧图，比如页面中使用的各种小图标
+		按钮背景图及其各种效果的图片，适合做成雪碧图
+		对于img标签设置的内容性图片，是不能合成到雪碧图的
+		开发游戏使用的素材图片
+	4）制作规范
+		图片在合并之前必须保留空隙
+		图片排列方式有横向和纵向
+		合并分类的原则
+		把同属一个模块的图片进行合并
+		把大小相近的图片进行合并
+		把色彩相近的图片进行合并
+		必须保存为png格式的图片
+
+
+
+
